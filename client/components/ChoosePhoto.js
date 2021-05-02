@@ -30,6 +30,7 @@ class ChoosePhoto extends Component {
     try {
       if (!image.cancelled) {
         this.props.setImage(image);
+        this.props.navigation.navigate("ProductConfirm");
       }
     } catch (err) {
       console.log(err);
