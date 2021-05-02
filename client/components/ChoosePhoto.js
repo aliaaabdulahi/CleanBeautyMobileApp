@@ -18,11 +18,6 @@ class ChoosePhoto extends Component {
     this.handleImage = this.handleImage.bind(this);
   }
 
-  async componentDidMount() {
-    await Camera.requestPermissionsAsync();
-    await MediaLibrary.requestPermissionsAsync();
-  }
-
   async takePhoto() {
     let image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
@@ -32,16 +27,7 @@ class ChoosePhoto extends Component {
     this.handleImage(image);
   }
 
-  async uploadPhoto() {
-    let image = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-      base64: true,
-    });
-    this.handleImage(image);
-  }
-
-  async handleImage(image) {
+  handleImage(image) {
     try {
       if (!image.cancelled) {
         this.props.setImage(image);
@@ -60,10 +46,6 @@ class ChoosePhoto extends Component {
         <Button
           title="Take Photo of Product"
           onPress={() => this.takePhoto()}
-        />
-        <Button
-          title="Upload a Photo of Product"
-          onPress={() => this.uploadPhoto()}
         />
       </SafeAreaView>
     );

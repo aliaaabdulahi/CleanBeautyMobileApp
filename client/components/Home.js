@@ -9,7 +9,7 @@ function Home({ navigation }) {
       <Text>
         <Button
           title="Scan a Product"
-          onPress={() => navigation.navigate("ChoosePhoto")}
+          onPress={() => navigation.navigate("Upload")}
         />
         <Button
           title="Search for a Product"
