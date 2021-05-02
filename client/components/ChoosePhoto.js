@@ -26,7 +26,7 @@ class ChoosePhoto extends Component {
     this.handleImage(image);
   }
 
-  handleImage(image) {
+  async handleImage(image) {
     try {
       if (!image.cancelled) {
         this.props.setImage(image);
