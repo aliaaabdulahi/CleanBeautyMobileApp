@@ -4,9 +4,17 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../store/products";
 
 class Products extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchField: "",
+    };
+  }
+
   componentDidMount() {
     this.props.loadProducts();
   }
+
   render() {
     const products = this.props.products || [];
     console.log(products);

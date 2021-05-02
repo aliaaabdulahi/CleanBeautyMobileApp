@@ -5,11 +5,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import products from "./products";
 import product from "./product";
+import googleVision from "./googleVision";
 
 const reducer = combineReducers({
   auth,
   products,
   product,
+  googleVision,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
