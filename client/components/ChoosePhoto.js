@@ -14,7 +14,6 @@ class ChoosePhoto extends Component {
       loading: true,
     };
     this.takePhoto = this.takePhoto.bind(this);
-    this.uploadPhoto = this.handleImage.bind(this);
     this.handleImage = this.handleImage.bind(this);
   }
 
