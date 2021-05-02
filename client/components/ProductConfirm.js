@@ -17,22 +17,23 @@ class ProductConfirm extends Component {
   async submitToGoogle() {
     console.log("imagebeforebod", this.props.image);
     const { image, gotGoogleResponse } = this.props;
-    const body = {
+    const body = JSON.stringify({
       requests: [
         {
-          image: {
-            content: image,
-          },
           features: [
             {
               type: "TEXT_DETECTION",
-              maxResults: 1,
             },
           ],
+          image: {
+            content: image,
+          },
         },
       ],
-    };
+    });
     console.log("image after bod", image);
+    console.log("body", body);
+
     const data = await fetch(
       "https://vision.googleapis.com/v1/images:annotate?key=" + API_KEY,
       {

@@ -15,8 +15,8 @@ export const gotGoogleResponse = (response) => {
   };
 };
 const initialState = {
-  image: null,
   response: null,
+  image: null,
 };
 
 export default (state = initialState, action) => {
