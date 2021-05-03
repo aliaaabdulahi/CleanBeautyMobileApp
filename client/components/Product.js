@@ -19,6 +19,8 @@ class Product extends Component {
         <Text>{product["currentSku/imageAltText"]}</Text>
         <Text>{product["currentSku/altImage"]} </Text>
         <Image source={{ uri: `https://sephora.com${product.heroImage}` }} />
+        <Text>Is natural? {product["currentSku/isNatural"]}</Text>
+        <Text>Is organic? {product["currentSku/isOrganic"]}</Text>
       </TouchableOpacity>
     );
   }
