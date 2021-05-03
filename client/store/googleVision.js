@@ -24,8 +24,10 @@ export default (state = initialState, action) => {
     case SET_IMAGE:
       return { ...state, image: action.image.base64 };
     case GOT_GOOGLE_RESPONSE:
-      console.log(action.response);
-      return { ...state, response: action.response };
+      return {
+        ...state,
+        response: action.response.responses[0].fullTextAnnotation.text,
+      };
     default:
       return state;
   }

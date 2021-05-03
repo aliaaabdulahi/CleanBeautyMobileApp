@@ -3,6 +3,8 @@ import { View, Text } from "react-native";
 import { gotGoogleResponse } from "../store/googleVision";
 import { API_KEY } from "../../googleVisionConfig";
 import { connect } from "react-redux";
+import { queryString } from "../../utils";
+import { fetchProductsByName } from "../store/products";
 
 class ProductConfirm extends Component {
   constructor(props) {
@@ -12,10 +14,13 @@ class ProductConfirm extends Component {
 
   async componentDidMount() {
     await this.submitToGoogle();
+    const { googleResponse, fetchProduct } = this.props;
+    const query = queryString(googleResponse);
+    console.log(query);
+    await fetchProduct(query);
   }
 
   async submitToGoogle() {
-    console.log("imagebeforebod", this.props.image);
     const { image, gotGoogleResponse } = this.props;
     const body = JSON.stringify({
       requests: [
@@ -31,8 +36,6 @@ class ProductConfirm extends Component {
         },
       ],
     });
-    console.log("image after bod", image);
-    console.log("body", body);
 
     const data = await fetch(
       "https://vision.googleapis.com/v1/images:annotate?key=" + API_KEY,
@@ -47,7 +50,6 @@ class ProductConfirm extends Component {
     );
 
     const responseJson = await data.json();
-    console.log("rsponseJson", responseJson);
     gotGoogleResponse(responseJson);
   }
   render() {
@@ -70,7 +72,7 @@ const mapDispatch = (dispatch) => {
   return {
     gotGoogleResponse: (response) => dispatch(gotGoogleResponse(response)),
     fetchProduct: (googleResponse) =>
-      dispatch(fetchProductByName(googleResponse)),
+      dispatch(fetchProductsByName(googleResponse)),
   };
 };
 
