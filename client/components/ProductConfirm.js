@@ -11,7 +11,6 @@ class ProductConfirm extends Component {
   constructor(props) {
     super(props);
     this.submitToGoogle = this.submitToGoogle.bind(this);
-    this.handlePress = this.handlePress.bind(this);
   }
 
   async componentDidMount() {
@@ -54,11 +53,6 @@ class ProductConfirm extends Component {
     gotGoogleResponse(responseJson);
   }
 
-  handlePress() {
-    const { navigation } = this.props;
-    return navigation.navigate("Product");
-  }
-
   render() {
     const products = this.props.productsArray || [];
     return (
@@ -66,11 +60,7 @@ class ProductConfirm extends Component {
         <ScrollView>
           {products.length
             ? products.map((product) => (
-                <Product
-                  key={product.id}
-                  product={product}
-                  handlePress={this.handlePress}
-                />
+                <Product key={product.id} product={product} />
               ))
             : null}
         </ScrollView>

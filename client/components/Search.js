@@ -19,7 +19,6 @@ class Products extends Component {
       searchField: "",
     };
     this.onChangeText = this.onChangeText.bind(this);
-    this.handlePress = this.handlePress.bind(this);
   }
 
   componentDidMount() {
@@ -28,11 +27,6 @@ class Products extends Component {
 
   onChangeText() {
     console.log("hello");
-  }
-
-  handlePress() {
-    const { navigation } = this.props;
-    return navigation.navigate("Product");
   }
 
   render() {
@@ -44,11 +38,7 @@ class Products extends Component {
           <TextInput onChangeText={this.onChangeText} />
           {products.length
             ? products.map((product) => (
-                <Product
-                  key={product.id}
-                  product={product}
-                  handlePress={this.handlePress}
-                />
+                <Product key={product.id} product={product} />
               ))
             : null}
         </ScrollView>
