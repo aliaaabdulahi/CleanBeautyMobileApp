@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView, Linking } from "react-native";
 import { gotGoogleResponse } from "../store/googleVision";
 import { API_KEY } from "../../googleVisionConfig";
 import { connect } from "react-redux";
 import { queryString } from "../../utils";
-import { fetchProductsByName } from "../store/products";
+import { fetchProductsByName } from "../store/googleVision";
 
 class ProductConfirm extends Component {
   constructor(props) {
@@ -51,11 +51,12 @@ class ProductConfirm extends Component {
     const responseJson = await data.json();
     gotGoogleResponse(responseJson);
   }
+
   render() {
     return (
-      <View>
+      <SafeAreaView>
         <Text>Hi</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -64,6 +65,7 @@ const mapState = (state) => {
   return {
     image: state.googleVision.image,
     googleResponse: state.googleVision.response,
+    productsArray: state.googleVision.productsArray,
   };
 };
 
