@@ -11,14 +11,43 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:productName", async (req, res, next) => {
   try {
-    const product = await Product.findAll({
-      where: {
-        ["currentSku/imageAltText"]: {
-          [Op.substring]: req.params.productName,
-        },
-      },
-    });
-    res.json(product);
+    // const array = req.params.productName.split("%");
+    // console.log("thee array", array);
+    // let results = [];
+    // array.map(async (word) =>
+    //   results.push(
+    //     await Product.findAll({
+    //       where: {
+    //         ["currentSku/imageAltText"]: {
+    //           [Op.substring]: word,
+    //         },
+    //       },
+    //     })
+    //   )
+    // );
+
+    const queryArray = req.params.productName.split(" ");
+    let results = [];
+    for (let i = 0; i < queryArray.length; i++) {
+      results.push(
+        await Product.findAll({
+          where: {
+            ["currentSku/imageAltText"]: {
+              [Op.substring]: queryArray[i],
+            },
+          },
+        })
+      );
+    }
+
+    // const product = await Product.findAll({
+    //   where: {
+    //     ["currentSku/imageAltText"]: {
+    //       [Op.substring]: req.params.productName,
+    //     },
+    //   },
+    // });
+    res.json(results);
   } catch (err) {
     next(err);
   }

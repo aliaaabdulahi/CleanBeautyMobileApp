@@ -1,6 +1,6 @@
 function queryString(string) {
   const characters = `1234567890.,:;'"!_~/()$@#%^&*+-=<>|?[]{} `;
-  let urlString = "";
+  let urlString = " ";
   for (let i = 0; i < string.length; i++) {
     if (characters.includes(string[i])) {
       urlString += " ";

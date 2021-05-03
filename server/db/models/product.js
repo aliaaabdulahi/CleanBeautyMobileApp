@@ -39,6 +39,12 @@ const Product = db.define("product", {
   reviews: Sequelize.STRING,
   targetUrl: Sequelize.STRING,
   url: Sequelize.STRING,
+  productArray: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return this["currentSku/imageAltText"].split(" ");
+    },
+  },
 });
 
 module.exports = Product;

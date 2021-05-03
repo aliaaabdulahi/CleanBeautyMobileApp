@@ -16,7 +16,6 @@ class ProductConfirm extends Component {
     await this.submitToGoogle();
     const { googleResponse, fetchProduct } = this.props;
     const query = queryString(googleResponse);
-    console.log(query);
     await fetchProduct(query);
   }
 
