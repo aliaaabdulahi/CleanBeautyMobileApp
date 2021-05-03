@@ -6,6 +6,7 @@ import ChoosePhoto from "./ChoosePhoto";
 import Search from "./Search";
 import Home from "./Home";
 import ProductConfirm from "./ProductConfirm";
+import Product from "./Product";
 
 const CameraStack = createStackNavigator();
 
@@ -14,6 +15,7 @@ function CameraStackScreen() {
     <CameraStack.Navigator>
       <CameraStack.Screen name="Upload" component={ChoosePhoto} />
       <CameraStack.Screen name="ProductConfirm" component={ProductConfirm} />
+      <CameraStack.Screen name="Product" component={Product} />
     </CameraStack.Navigator>
   );
 }

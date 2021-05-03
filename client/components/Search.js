@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  Image,
+  TextInput,
+} from "react-native";
 import { connect } from "react-redux";
+import Product from "./Product";
 import { fetchProducts } from "../store/products";
+import { fetchSingleProduct } from "../store/product";
 
 class Products extends Component {
   constructor(props) {
@@ -9,10 +18,21 @@ class Products extends Component {
     this.state = {
       searchField: "",
     };
+    this.onChangeText = this.onChangeText.bind(this);
+    this.handlePress = this.handlePress.bind(this);
   }
 
   componentDidMount() {
     this.props.loadProducts();
+  }
+
+  onChangeText() {
+    console.log("hello");
+  }
+
+  handlePress() {
+    const { navigation } = this.props;
+    return navigation.navigate("Product");
   }
 
   render() {
@@ -21,9 +41,14 @@ class Products extends Component {
     return (
       <SafeAreaView>
         <ScrollView>
+          <TextInput onChangeText={this.onChangeText} />
           {products.length
             ? products.map((product) => (
-                <Text key={product.id}>{product.brandName}</Text>
+                <Product
+                  key={product.id}
+                  product={product}
+                  handlePress={this.handlePress}
+                />
               ))
             : null}
         </ScrollView>

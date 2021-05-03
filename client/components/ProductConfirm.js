@@ -5,11 +5,13 @@ import { API_KEY } from "../../googleVisionConfig";
 import { connect } from "react-redux";
 import { queryString } from "../../utils";
 import { fetchProductsByName } from "../store/googleVision";
+import Product from "./Product";
 
 class ProductConfirm extends Component {
   constructor(props) {
     super(props);
     this.submitToGoogle = this.submitToGoogle.bind(this);
+    this.handlePress = this.handlePress.bind(this);
   }
 
   async componentDidMount() {
@@ -52,6 +54,11 @@ class ProductConfirm extends Component {
     gotGoogleResponse(responseJson);
   }
 
+  handlePress() {
+    const { navigation } = this.props;
+    return navigation.navigate("Product");
+  }
+
   render() {
     const products = this.props.productsArray || [];
     return (
@@ -59,13 +66,11 @@ class ProductConfirm extends Component {
         <ScrollView>
           {products.length
             ? products.map((product) => (
-                <View key={product.id}>
-                  <Text>{product["currentSku/imageAltText"]}</Text>
-                  <Text>{product["currentSku/altImage"]} </Text>
-                  <Image
-                    source={{ uri: `https://sephora.com${product.heroImage}` }}
-                  />
-                </View>
+                <Product
+                  key={product.id}
+                  product={product}
+                  handlePress={this.handlePress}
+                />
               ))
             : null}
         </ScrollView>
