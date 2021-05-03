@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, SafeAreaView, Linking } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, Image } from "react-native";
 import { gotGoogleResponse } from "../store/googleVision";
 import { API_KEY } from "../../googleVisionConfig";
 import { connect } from "react-redux";
@@ -53,9 +53,22 @@ class ProductConfirm extends Component {
   }
 
   render() {
+    const products = this.props.productsArray || [];
     return (
       <SafeAreaView>
-        <Text>Hi</Text>
+        <ScrollView>
+          {products.length
+            ? products.map((product) => (
+                <View key={product.id}>
+                  <Text>{product["currentSku/imageAltText"]}</Text>
+                  <Text>{product["currentSku/altImage"]} </Text>
+                  <Image
+                    source={{ uri: `https://sephora.com${product.heroImage}` }}
+                  />
+                </View>
+              ))
+            : null}
+        </ScrollView>
       </SafeAreaView>
     );
   }
