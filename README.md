@@ -10,4 +10,4 @@ What I used: React Native, Redux, Express, Node, and PostgreSQL. I also made use
 
 I seeded my database with information on each product and when Google Cloud Vision's API responded with the text it detected from the product, I queried my database for the detected text.
 
-![ Alt text](skinapp. gif)
+![](skinapp. gif)
